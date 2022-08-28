@@ -1,0 +1,18 @@
+class Solution {
+    public boolean isValid(String s) {
+        Stack<Character> stek = new Stack<>();
+        for(char cha: s.toCharArray()){
+            if(cha == '{' || cha == '[' || cha == '('){
+                stek.push(cha);
+            }else{
+                if(stek.isEmpty()){return false;}
+                char ch = stek.pop();
+                if(ch == '{' && cha != '}' || ch == '[' && cha != ']'
+                   || ch == '(' && cha != ')'){
+                    return false;
+                }
+            }
+        }
+        return stek.isEmpty();
+    }
+}
