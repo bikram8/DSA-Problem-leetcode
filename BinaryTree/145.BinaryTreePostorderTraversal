@@ -1,0 +1,38 @@
+class Solution {
+      ArrayList<Integer> list = new ArrayList<>();
+    public List<Integer> postorderTraversal(TreeNode root) {
+            if(root == null) return list;
+        
+        postorderTraversal(root.left);
+        postorderTraversal(root.right);
+          list.add(root.val);
+        
+        return list;
+    }
+}
+
+   // iterative solution 
+   
+   public  void PostOrder(TreeNode root){
+          TreeNode curr = root;
+            Stack<TreeNode> stack = new Stack<>();
+          while (curr != null || !stack.isEmpty()){
+              if(curr != null){
+                  stack.push(curr);
+                  curr = curr.left;
+              }else{
+                  TreeNode temp = stack.peek().right;
+                  if(temp == null){
+                      temp = stack.pop();
+                      System.out.println(temp.data+" ");
+
+                      while (!stack.isEmpty() && temp == stack.peek().right){
+                          temp = stack.pop();
+                          System.out.println(temp.data+" ");
+                      }
+                  }else{
+                      curr = temp;
+                  }
+              }
+          }
+        }
