@@ -1,0 +1,36 @@
+class Solution {
+      ArrayList<Integer> list = new ArrayList<>();
+    public List<Integer> preorderTraversal(TreeNode root) {
+            
+        if(root == null) return list;
+         list.add(root.val);
+           preorderTraversal(root.left);
+           preorderTraversal(root.right);
+            
+         return list;
+    }
+}
+
+
+
+// iterative solution is given below
+
+
+   public  void preOrder(TreeNode root){
+        if(root == null){
+            return;
+        }
+        Stack<TreeNode> stack = new Stack<>();
+        stack.push(root);
+        while (!stack.isEmpty()){
+            TreeNode temp = stack.pop();
+            System.out.println(temp.data);
+
+            if(temp.right != null){
+                stack.push(temp.right);
+            }
+            if(temp.left != null){
+                stack.push(temp.left);
+            }
+        }
+    }
