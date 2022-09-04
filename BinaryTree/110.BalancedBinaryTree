@@ -1,0 +1,19 @@
+class Solution {
+      boolean isUnbalanced;
+    public boolean isBalanced(TreeNode root) {
+        isUnbalanced = false;
+		helper(root);
+
+		return !isUnbalanced;
+    }
+     public int helper(TreeNode cur) {
+		if(cur == null) return 0;
+
+		int leftDepth = helper(cur.left);
+		int rightDepth = helper(cur.right);
+
+		if(Math.abs(leftDepth-rightDepth) > 1) isUnbalanced = true;
+
+		return Math.max(leftDepth, rightDepth) + 1; 
+	}
+}
