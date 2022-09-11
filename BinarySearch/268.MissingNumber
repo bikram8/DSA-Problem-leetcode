@@ -1,0 +1,16 @@
+class Solution {
+    public int missingNumber(int[] nums) {
+       int n = nums.length;
+        
+        int totalExpected = (n*(n+1))/2;
+        int totalSum = 0;
+        
+        for(int i:nums){
+            totalSum += i;
+        }
+        
+        return totalExpected - totalSum;
+        
+        
+    }
+}
