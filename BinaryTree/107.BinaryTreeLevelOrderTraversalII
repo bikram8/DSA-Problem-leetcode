@@ -1,0 +1,22 @@
+class Solution {
+    public List<List<Integer>> levelOrderBottom(TreeNode root) {
+       List<List<Integer>> fResult = new ArrayList<>();
+        if(root == null) return fResult;
+        
+        Queue<TreeNode> dqueue = new LinkedList<>();
+        dqueue.add(root);
+        while(!dqueue.isEmpty()){
+            List<Integer> result = new ArrayList<>();
+              int n = dqueue.size();
+            for(int i=0;i<n;i++){
+                TreeNode node = dqueue.poll();
+                result.add(node.val);
+                
+                if(node.left != null) dqueue.add(node.left);
+                if(node.right != null) dqueue.add(node.right);
+            }
+              fResult.add(0,result);
+        }
+          return fResult;
+    }
+}
