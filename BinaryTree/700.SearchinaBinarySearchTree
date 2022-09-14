@@ -1,0 +1,14 @@
+class Solution {
+    public TreeNode searchBST(TreeNode root, int val) {
+        // this is the base condition , if this conditions hits then we return root;
+         if(root == null || root.val == val){
+              return root;
+         } 
+        // if the given val is less than we need to search only in the left subtree discarding the right subtree;
+        if(val < root.val){
+            return  searchBST(root.left,val);
+        }else{
+             return searchBST(root.right,val);
+        }
+    }
+}
