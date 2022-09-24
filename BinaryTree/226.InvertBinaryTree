@@ -1,0 +1,37 @@
+class Solution {
+    
+    // first approach 
+    
+    
+    public TreeNode invertTree(TreeNode root) {
+         if(root == null ) return root;
+        
+        invertTree(root.left);
+        invertTree(root.right);
+        
+        TreeNode temp = root.left;
+        
+        root.left = root.right;
+        root.right = temp;
+        
+        return root;
+    }
+}
+
+// this is another approach in which a new node is being created called ans;
+
+class Solution{
+    public TreeNode invertTree(TreeNode root){
+        if(root == null ) return root;
+        // in this approach we are creating new treeNode
+        
+        TreeNode ans = new TreeNode(root.val);
+        ans.right = invertTree(root.right);
+        ans.left = invertTree(root.left);
+        
+        return ans;
+        
+        
+    }
+    
+}
