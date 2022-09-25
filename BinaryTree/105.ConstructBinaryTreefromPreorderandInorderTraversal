@@ -1,0 +1,39 @@
+class Solution {
+    public TreeNode buildTree(int[] preorder, int[] inorder) {
+         int preOrder_start =0 , preOrder_end = preorder.length-1;
+        int inOrder_start = 0 , inOrder_end = inorder.length-1;
+        
+        return helper(preorder,inorder,preOrder_start, preOrder_end, inOrder_start, inOrder_end);
+    }
+     public TreeNode helper(int[] preorder, int[] inorder, int preOrder_start, int preOrder_end, int inOrder_start , int inOrder_end){
+         
+            if(inOrder_start > inOrder_end) return null;
+        int rootValue = preorder[preOrder_start];
+          int rootIndex = -1;
+        // this loop is to find the root in the inorder arrays so that we can identify the left and right nodes to construct tree
+         
+         for(int i=inOrder_start ; i<= inOrder_end; i++){
+             if(rootValue == inorder[i]){
+                   rootIndex = i;
+                 break;
+             }
+         }
+ // now construct the tree and its root Node will be first element of preorder array
+         TreeNode root = new TreeNode(rootValue);
+   // now need to identify the left inorder start , left inorder end  , right inorder start , right inorder end and so on for preorder also
+         
+         int leftInStart = inOrder_start, leftInEnd = rootIndex - 1;
+         int rightInStart = rootIndex+1 , rightInEnd = inOrder_end;
+         
+         int leftPrStart = preOrder_start+1, leftPrEnd = leftInEnd - leftInStart + leftPrStart;
+         int rightPrStart = leftPrEnd + 1 , rightPrEnd = preOrder_end;
+         
+  root.left = helper(preorder,inorder,leftPrStart, leftPrEnd , leftInStart , leftInEnd);
+  root.right = helper(preorder,inorder, rightPrStart , rightPrEnd , rightInStart , rightInEnd);
+         
+          return root;
+         
+         
+         
+     }
+}
