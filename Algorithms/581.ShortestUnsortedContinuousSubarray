@@ -1,0 +1,29 @@
+class Solution {
+    public int findUnsortedSubarray(int[] nums) {
+         // first step will be to find the start index and low index where the condition of sorted array is voilated
+        // for example in array 2,6,4,8,10,9,15 - .. 6 will be start and 9 will be low
+      int start = 0 , end = nums.length-1;  
+        while(start+1 < nums.length && nums[start] <= nums[start+1]) start++;
+        while(end-1 >= 0 && nums[end] >= nums[end-1]) end--;
+        
+        if(start == nums.length-1) return 0;
+        
+        // now we need to find the minimum and maximum element that lies in between the start and end index that we calculated above to 
+        // check the element present before start and after end is sorted or not
+        
+        int minimum = Integer.MAX_VALUE;
+        int maximum = Integer.MIN_VALUE;
+        
+        for(int i=start;i<=end;i++){
+            minimum = Math.min(minimum,nums[i]);
+            maximum = Math.max(maximum,nums[i]);
+        }
+        
+    while(start-1 >= 0 && nums[start-1] > minimum) start--;
+        while(end+1<=nums.length-1 && nums[end+1] < maximum) end++;
+        
+        return end-start + 1;
+        
+        
+    }
+}
