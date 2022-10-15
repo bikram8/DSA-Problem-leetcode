@@ -1,0 +1,16 @@
+class Solution {
+    public int maxAbsoluteSum(int[] nums) {
+       
+        int currSum = 0;
+        int min=0, max=0;
+        
+        for(int i=0;i<nums.length;i++){
+            currSum += nums[i];
+            
+            min = Math.min(min,currSum);
+            max = Math.max(max,currSum);
+             
+        }
+         return max-min;
+    }
+}
