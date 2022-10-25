@@ -1,0 +1,19 @@
+class Solution {
+    public List<String> findRepeatedDnaSequences(String s) {
+        //this set is basically to add all the substring of length 10;
+       Set<String> seen = new HashSet<>();
+       // and this set is for storing those substring which is already seen in previous one
+        Set<String> visited = new HashSet<>();
+        for(int i=0;i<s.length() - 9 ; i++){
+            String subStr = s.substring(i,i+10);
+            if(seen.contains(subStr)){
+                visited.add(subStr);
+                
+            }else{
+                seen.add(subStr);
+            }
+        }
+          return  new ArrayList(visited);
+              
+    }
+}
